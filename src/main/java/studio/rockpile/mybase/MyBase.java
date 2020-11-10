@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import studio.rockpile.mybase.constant.ServiceTypeEnum;
-import studio.rockpile.mybase.service.base.BaseHandler;
+import studio.rockpile.mybase.service.base.BaseServiceHandler;
 import studio.rockpile.mybase.service.base.ServiceArgException;
 
 public class MyBase {
@@ -16,7 +16,7 @@ public class MyBase {
 			return;
 		}
 
-		BaseHandler handler = null;
+		BaseServiceHandler handler = null;
 		try {
 			ServiceTypeEnum type = ServiceTypeEnum.getType(args[0]);
 			if (type == null) {

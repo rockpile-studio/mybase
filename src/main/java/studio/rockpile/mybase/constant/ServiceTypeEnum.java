@@ -1,6 +1,6 @@
 package studio.rockpile.mybase.constant;
 
-import studio.rockpile.mybase.service.base.BaseHandler;
+import studio.rockpile.mybase.service.base.BaseServiceHandler;
 
 public enum ServiceTypeEnum {
 	FILE_ENCRYPT("file-encrypt", "studio.rockpile.mybase.service.FileEncryptor");
@@ -13,12 +13,12 @@ public enum ServiceTypeEnum {
 		this.className = className;
 	}
 
-	public static BaseHandler buildHandler(ServiceTypeEnum type) throws Exception {
+	public static BaseServiceHandler buildHandler(ServiceTypeEnum type) throws Exception {
 		Class<?> clazz = Class.forName(type.getClassName());
-		if (BaseHandler.class.isAssignableFrom(clazz)) {
-			return (BaseHandler) clazz.newInstance();
+		if (BaseServiceHandler.class.isAssignableFrom(clazz)) {
+			return (BaseServiceHandler) clazz.newInstance();
 		} else {
-			throw new Exception("对应的服务类(" + type.getClassName() + ")未继承BaseHandler");
+			throw new Exception("对应的服务类(" + type.getClassName() + ")未继承BaseServiceHandler");
 		}
 	}
 

@@ -2,12 +2,12 @@ package studio.rockpile.mybase.service;
 
 import java.io.File;
 
-import studio.rockpile.mybase.service.base.BaseHandler;
+import studio.rockpile.mybase.service.base.BaseServiceHandler;
 import studio.rockpile.mybase.service.base.ServiceArgException;
 import studio.rockpile.mybase.util.AES128Encryptor;
 import studio.rockpile.mybase.util.FileUtil;
 
-public class FileEncryptor extends BaseHandler {
+public class FileEncryptor extends BaseServiceHandler {
 
 	private final static String ENCRYPT_FILE_SUFFIX = ".enc";
 	private String aesKey = null;
