@@ -58,7 +58,7 @@ public class FileUtil {
 	}
 
 	// base64字符串转化文件
-	public static File base64ToFile(String base64, String filePath) throws Exception {
+	public static void base64ToFile(String base64, String filePath) throws Exception {
 		byte[] bytes = Base64.decodeBase64(base64);
 		for (int i = 0; i < bytes.length; ++i) {
 			if (bytes[i] < 0) {
@@ -83,14 +83,13 @@ public class FileUtil {
 				output.close();
 			}
 		}
-		return file;
 	}
 
 	public static void mkdir(String path) throws Exception {
 		File dir = new File(path);
 		if (dir.exists()) {
 			if (!dir.isDirectory()) {
-				throw new Exception("cannot create directory\'" + path + "\', file exists");
+				throw new Exception("cannot create directory'" + path + "', file exists");
 			}
 		} else {
 			dir.mkdirs();

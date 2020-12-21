@@ -2,6 +2,7 @@ package studio.rockpile.mybase.util;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Random;
 
@@ -63,29 +64,30 @@ public class SimpleEncoder {
 		return buff.toString();
 	}
 
-	public static final String encrypt(String message) {
-		return SimpleEncoder.encrypt(message, "UTF-8");
+	public static String encrypt(String message) {
+		return SimpleEncoder.encrypt(message, StandardCharsets.UTF_8);
 	}
 
-	public static final String encrypt(String message, String charset) {
+	public static String encrypt(String message, Charset charset) {
 		if (message == null)
 			return "";
 		if (message.length() == 0) {
 			return "";
 		} else {
 			String code = getRandomString(ENCRYPTED_PREFIX_LENGTH) + message;
-			BigInteger bi_passwd = new BigInteger(code.getBytes(Charset.forName(charset)));
+			BigInteger bi_password = new BigInteger(code.getBytes(charset));
 			BigInteger bi_r0 = new BigInteger(SEED);
-			BigInteger bi_r1 = bi_r0.xor(bi_passwd);
+			BigInteger bi_r1 = bi_r0.xor(bi_password);
 			return bi_r1.toString(RADIX);
 		}
 	}
 
-	public static final String decrypt(String encrypted) {
-		return SimpleEncoder.decrypt(encrypted, "UTF-8");
+
+	public static String decrypt(String encrypted) {
+		return SimpleEncoder.decrypt(encrypted, StandardCharsets.UTF_8.name());
 	}
 
-	public static final String decrypt(String encrypted, String charset) {
+	public static String decrypt(String encrypted, String charset) {
 		if (encrypted == null)
 			return "";
 		if (encrypted.length() == 0)
