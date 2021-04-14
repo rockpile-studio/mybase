@@ -42,7 +42,20 @@ public class FileEncryptor extends BaseServiceHandler {
 				file.delete();
 			}
 		}
+	}
 
+	public static void main(String[] args) {
+		try {
+			FileEncryptor encryptor = new FileEncryptor();
+			String fileName = "D:/temporary/meta.dat";
+			encryptor.setAesKey(AES128Encryptor.DEFAULT_AES_KEY);
+			encryptor.setIvParam(AES128Encryptor.DEFAULT_IV_PARAM);
+			encryptor.encoding(new File(fileName));
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void encoding(File file) throws Exception {
@@ -62,5 +75,21 @@ public class FileEncryptor extends BaseServiceHandler {
 	@Override
 	public String usage() {
 		return "Usage: java -jar mybase.jar file-encrypt {file-path} [aes] [iv]";
+	}
+
+	public String getAesKey() {
+		return aesKey;
+	}
+
+	public void setAesKey(String aesKey) {
+		this.aesKey = aesKey;
+	}
+
+	public String getIvParam() {
+		return ivParam;
+	}
+
+	public void setIvParam(String ivParam) {
+		this.ivParam = ivParam;
 	}
 }
